@@ -1,0 +1,14 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Quote {
+  id: Int!
+  ticker: String!
+  timestamp: Int!
+  price: Float!
+}
+
+type Query {
+  findAll: [Quote!]!
+}
