@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS quote (
-    quote_id BIGINT NOT NULL PRIMARY KEY,
-    quote_ticker varchar(50) NOT NULL,
-    quote_timestamp TIMESTAMP NOT NULL,
-    quote_price DOUBLE PRECISION NOT NULL
+    id SERIAL PRIMARY KEY,
+    ticker varchar(50) NOT NULL,
+    timestamp TIMESTAMP NOT NULL,
+    price DOUBLE PRECISION NOT NULL
 );

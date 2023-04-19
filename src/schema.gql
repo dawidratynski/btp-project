@@ -17,3 +17,13 @@ scalar DateTime
 type Query {
   getQuotes: [Quote!]!
 }
+
+type Mutation {
+  addQuote(addQuoteInput: AddQuoteInput!): Quote!
+}
+
+input AddQuoteInput {
+  ticker: String!
+  timestamp: DateTime!
+  price: Float!
+}
