@@ -9,9 +9,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-  @Get('quotes')
-  getQuotes() {
-    return this.appService.getQuotes();
-  }
 }

@@ -7,7 +7,7 @@ export class QuoteResolver {
     constructor(private quoteService: QuoteService){}
 
     @Query(returns => [Quote])
-    findAll(): Promise<Quote[]>{
-        return this.quoteService.findAll();
+    getQuotes(): Promise<Quote[]>{
+        return this.quoteService.getQuotes();
     }
 }
