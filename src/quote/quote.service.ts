@@ -8,7 +8,7 @@ export class QuoteService {
         quote.id = 1;
         quote.price = 12.3;
         quote.ticker = "TSLA";
-        quote.timestamp = new Date(2343546);
+        quote.timestamp = new Date(Date.UTC(2022,10,12,3,12,32,0));
 
         return [quote]
     }

@@ -1,4 +1,5 @@
-import { Field, Float, Int, ObjectType } from "@nestjs/graphql";
+import { Field, Float, GraphQLTimestamp, Int, ObjectType } from "@nestjs/graphql";
+import { GraphQLDateTime} from 'graphql-iso-date';
 
 @ObjectType()
 export class Quote{
@@ -8,7 +9,7 @@ export class Quote{
     @Field(type => String)
     ticker:string;
 
-    @Field(type => Int)
+    @Field(type => GraphQLDateTime)
     timestamp:Date;
 
     @Field(type => Float)
