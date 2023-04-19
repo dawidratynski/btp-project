@@ -5,6 +5,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { QuoteModule } from './quote/quote.module';
+import { DbModule } from './db/db.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { QuoteModule } from './quote/quote.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
+    DbModule,
   ],
   controllers: [AppController],
   providers: [AppService],
