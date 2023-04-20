@@ -8,7 +8,6 @@ export class QuoteService {
 
     constructor(@Inject(PG_CONNECTION) private conn: any) {}
 
-
     async getQuotes() {
         const query_str = `SELECT * FROM quote`;
         try {
@@ -19,10 +18,10 @@ export class QuoteService {
         }
     }
 
-
     async addQuote(addQuoteInput : AddQuoteInput):Promise<Quote>{
         const query_str = "INSERT INTO quote(ticker, timestamp, price) VALUES ( '" + 
-                        addQuoteInput.ticker.toString() + "', '" + addQuoteInput.timestamp.toISOString() + "','" + 
+                        addQuoteInput.ticker.toString() + "', '" + 
+                        addQuoteInput.timestamp.toISOString() + "','" + 
                         addQuoteInput.price.toString() + "' ) RETURNING * ;";
 
         try{
@@ -31,7 +30,5 @@ export class QuoteService {
         } catch {
             throw new HttpException("Failed to connect to database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        //return (newQuote.rows as Quote[])[0];
     }
 }

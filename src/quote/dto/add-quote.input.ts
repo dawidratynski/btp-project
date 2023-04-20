@@ -1,5 +1,5 @@
-import { Field, InputType, Float, GraphQLTimestamp } from "@nestjs/graphql";
-import { IsAlpha, IsAlphanumeric, IsDate, IsNotEmpty, IsNumber } from "class-validator";
+import { Field, InputType, Float } from "@nestjs/graphql";
+import { IsAlphanumeric, IsDate, IsNotEmpty, IsNumber } from "class-validator";
 import { GraphQLDateTime} from 'graphql-iso-date';
 
 @InputType()
