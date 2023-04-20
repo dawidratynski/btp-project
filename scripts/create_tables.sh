@@ -1,0 +1,1 @@
+docker exec -i btp_project_postgres_db psql -U root -d dev -a -t < sql/create_tables.sql

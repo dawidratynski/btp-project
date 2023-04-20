@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PG_CONNECTION } from 'src/constants';
-import { log } from 'util';
 import { AddQuoteInput } from './dto/add-quote.input';
 import { Quote } from './quote.entity';
 

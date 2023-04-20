@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { QuoteModule } from './quote/quote.module';
 import { DbModule } from './db/db.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -13,6 +14,10 @@ import { DbModule } from './db/db.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     DbModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: './../.env',
+    }),
   ],
   controllers: [],
   providers: [],
