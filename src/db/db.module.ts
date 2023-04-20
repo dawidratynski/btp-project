@@ -12,7 +12,8 @@ const dbProvider = {
             host: configService.get("POSTGRES_HOST"),
             database: configService.get("POSTGRES_DB"),
             password: configService.get("POSTGRES_PASSWORD") ,
-            port: configService.get<number>("POSTGRES_PORT"),        
+            port: configService.get<number>("POSTGRES_PORT"),
+            max: 100,        
         });
         return pool;
     } 
