@@ -8,7 +8,7 @@ export class QuoteService {
 
     constructor(@Inject(PG_CONNECTION) private conn: any) {}
 
-    async getQuotes() {
+    async getQuotes():Promise<Quote[]> {
         const query_str = `SELECT * FROM quote`;
         try {
             const res = await this.conn.query(query_str);
