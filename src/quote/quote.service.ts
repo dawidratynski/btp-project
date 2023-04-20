@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { PG_CONNECTION } from 'src/constants';
+import { PG_CONNECTION } from './../constants';
 import { AddQuoteInput } from './dto/add-quote.input';
 import { Quote } from './quote.entity';
 
