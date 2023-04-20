@@ -6,7 +6,7 @@ import { Quote } from './quote.entity';
 @Injectable()
 export class QuoteService {
 
-    constructor(@Inject(PG_CONNECTION) private conn: any) {}
+    constructor(@Inject(PG_CONNECTION) public conn: any) {}
 
     async getQuotes():Promise<Quote[]> {
         const query_str = `SELECT * FROM quote`;
