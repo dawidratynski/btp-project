@@ -4,7 +4,7 @@ import { ConfigService } from "@nestjs/config";
 import { Module } from "@nestjs/common";
 
 const dbProvider = {
-    provide: 'PG_CONNECTION',
+    provide: PG_CONNECTION,
     useFactory: () => {
         const pool = jest.fn().mockResolvedValue({
             query: jest.fn().mockResolvedValue({
