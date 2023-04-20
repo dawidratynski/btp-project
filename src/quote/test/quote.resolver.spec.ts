@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { resolve } from 'path/posix';
 import { DbModule } from '../../db/db.module';
 import { Quote } from '../quote.entity';
 import { QuoteResolver } from '../quote.resolver';
