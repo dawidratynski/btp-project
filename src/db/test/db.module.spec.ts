@@ -32,6 +32,7 @@ describe('dbProvider (connection Pool)', () => {
   });
 
   test('should connect to database', () => {
+    expect.assertions(1);
     expect(conn.query('SELECT 1;')).resolves.not.toThrow();
   })
 
