@@ -3,10 +3,13 @@ import { PG_CONNECTION } from './../constants';
 import { AddQuoteInput } from './dto/add-quote.input';
 import { Quote } from './quote.entity';
 
+
 @Injectable()
 export class QuoteService {
 
+
     constructor(@Inject(PG_CONNECTION) public conn: any) {}
+
 
     async getQuotes():Promise<Quote[]> {
         const query_str = `SELECT * FROM quotes`;
@@ -18,6 +21,7 @@ export class QuoteService {
         }
     }
 
+
     async addQuote(addQuoteInput : AddQuoteInput):Promise<Quote>{
         const query_str = "INSERT INTO quotes(ticker, timestamp, price) VALUES ( '" + 
                         addQuoteInput.ticker.toString() + "', '" + 
@@ -26,7 +30,7 @@ export class QuoteService {
 
         try{
             const newQuote = await this.conn.query(query_str);
-            return (newQuote.rows as Quote[])[0]
+            return (newQuote.rows as Quote[])[0];
         } catch {
             throw new HttpException("Failed to connect to database", HttpStatus.INTERNAL_SERVER_ERROR);
         }

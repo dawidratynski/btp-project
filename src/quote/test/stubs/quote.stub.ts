@@ -1,5 +1,6 @@
 import { Quote } from "src/quote/quote.entity";
 
+
 export const quoteStub = (): Quote => {
     return {
         id: 1682017199084,

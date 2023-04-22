@@ -1,5 +1,6 @@
 import { Field, Float, Int, ObjectType } from "@nestjs/graphql";
-import { GraphQLDateTime} from 'graphql-iso-date';
+import { GraphQLDateTime } from 'graphql-iso-date';
+
 
 @ObjectType()
 export class Quote{

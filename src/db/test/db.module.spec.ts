@@ -4,6 +4,7 @@ import { QuoteService } from '../../quote/quote.service';
 import { Pool } from 'pg'
 import { ConfigModule } from '@nestjs/config';
 
+
 describe('dbProvider (connection Pool)', () => {
   let service: QuoteService;
   let conn: Pool;
@@ -19,22 +20,27 @@ describe('dbProvider (connection Pool)', () => {
     conn = service.conn;
   });
 
+
   afterEach(async () => {
     await conn.end();
   })
+
 
   test('should be defined', () => {
     expect(conn).toBeDefined();
   });
 
+
   test('should have defined connection options', () => {
     expect(conn.options.user).toBeDefined();
   });
+
 
   test('should connect to database', () => {
     expect.assertions(1);
     expect(conn.query('SELECT 1;')).resolves.not.toThrow();
   })
+
 
   describe('when queries are called multiple times concurrently (assumes working db connection!)', () => {
     let elapsed_time: number;
@@ -48,6 +54,7 @@ describe('dbProvider (connection Pool)', () => {
       const query_result_1 = conn.query(sleep_query);
       const query_result_2 = conn.query(sleep_query);
       const query_result_3 = conn.query(sleep_query);
+
       await query_result_1;
       await query_result_2;
       await query_result_3;
@@ -56,6 +63,7 @@ describe('dbProvider (connection Pool)', () => {
       elapsed_time = end_time - start_time;
     })
 
+    
     test('then it should run queries concurrently', () => {
       expect.assertions(1);
       expect(elapsed_time).toBeLessThan( 3 * sleep_time_in_seconds * 1000);

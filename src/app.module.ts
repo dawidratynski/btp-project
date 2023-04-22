@@ -6,6 +6,7 @@ import { QuoteModule } from './quote/quote.module';
 import { DbModule } from './db/db.module';
 import { ConfigModule } from '@nestjs/config';
 
+
 @Module({
   imports: [
     QuoteModule,

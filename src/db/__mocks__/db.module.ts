@@ -3,6 +3,7 @@ import { quoteStub } from "../../quote/test/stubs/quote.stub";
 import { ConfigService } from "@nestjs/config";
 import { Module } from "@nestjs/common";
 
+
 const dbProvider = {
     provide: PG_CONNECTION,
     useFactory: () => {
@@ -14,7 +15,7 @@ const dbProvider = {
                         quoteStub(),
                         quoteStub(),
                     ]
-                }
+                };
             })
         });
         return pool();

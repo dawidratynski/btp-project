@@ -1,12 +1,13 @@
 import { Field, InputType, Float } from "@nestjs/graphql";
 import { IsAlphanumeric, IsDate, IsNotEmpty, IsNumber } from "class-validator";
-import { GraphQLDateTime} from 'graphql-iso-date';
+import { GraphQLDateTime } from 'graphql-iso-date';
+
 
 @InputType()
 export class AddQuoteInput{
     @Field(type => String)
-    @IsAlphanumeric()
     @IsNotEmpty()
+    @IsAlphanumeric()
     ticker:string;
 
     @Field(type => GraphQLDateTime)

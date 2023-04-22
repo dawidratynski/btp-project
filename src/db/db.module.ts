@@ -3,6 +3,7 @@ import { PG_CONNECTION } from './../constants';
 import { Pool } from 'pg'
 import { ConfigService } from '@nestjs/config';
 
+
 const dbProvider = {
     provide: PG_CONNECTION,
     inject: [ConfigService],
@@ -18,6 +19,7 @@ const dbProvider = {
         return pool;
     } 
 };
+
 
 @Module({
     providers: [dbProvider, ConfigService],
