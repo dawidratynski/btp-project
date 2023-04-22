@@ -32,15 +32,14 @@ describe('dbProvider (connection Pool)', () => {
   });
 
   test('should connect to database', () => {
-    // Jest will wait for promise to resolve and if promise rejects then the test will fail
-    return conn.query('SELECT 1');
+    expect(conn.query('SELECT 1;')).resolves.not.toThrow();
   })
 
   describe('when queries are called multiple times concurrently (assumes working db connection!)', () => {
     let elapsed_time: number;
-    const sleep_time_in_minutes = 0.1;
+    const sleep_time_in_seconds = 0.1;
     const {performance} = require('perf_hooks');
-    const sleep_query = "SELECT pg_sleep(" + sleep_time_in_minutes.toString() + ");";
+    const sleep_query = "SELECT pg_sleep(" + sleep_time_in_seconds.toString() + ");";
 
     beforeEach(async () =>{
       let start_time = performance.now();
@@ -57,7 +56,8 @@ describe('dbProvider (connection Pool)', () => {
     })
 
     test('then it should run queries concurrently', () => {
-      expect(elapsed_time).toBeLessThan( 3 * sleep_time_in_minutes * 1000);
+      expect.assertions(1);
+      expect(elapsed_time).toBeLessThan( 3 * sleep_time_in_seconds * 1000);
     })
   });
   
