@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DbModule } from '../../db/__mocks__/db.module';
+import { DbModule } from '../../db/db.module';
 import { QuoteService } from '../quote.service';
 import { Quote } from '../quote.entity';
 import { quoteStub } from './stubs/quote.stub';
