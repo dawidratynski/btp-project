@@ -7,12 +7,14 @@ const dbProvider = {
     provide: PG_CONNECTION,
     useFactory: () => {
         const pool = jest.fn().mockResolvedValue({
-            query: jest.fn().mockResolvedValue({
-                rows: [
-                    quoteStub(),
-                    quoteStub(),
-                    quoteStub(),
-                ]
+            query: jest.fn().mockImplementation(() => {
+                return {
+                    rows: [
+                        quoteStub(),
+                        quoteStub(),
+                        quoteStub(),
+                    ]
+                }
             })
         });
         return pool();
