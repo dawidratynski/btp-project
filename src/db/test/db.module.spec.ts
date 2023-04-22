@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { DbModule } from '../../db/db.module';
 import { QuoteService } from '../../quote/quote.service';
 import { Pool } from 'pg'
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 describe('dbProvider (connection Pool)', () => {
   let service: QuoteService;
@@ -19,6 +19,10 @@ describe('dbProvider (connection Pool)', () => {
     conn = service.conn;
   });
 
+  afterEach(async () => {
+    await conn.end();
+  })
+
   test('should be defined', () => {
     expect(conn).toBeDefined();
   });
@@ -27,11 +31,12 @@ describe('dbProvider (connection Pool)', () => {
     expect(conn.options.user).toBeDefined();
   });
 
-  test('should connect to database', async () => {
-    await expect(conn.query('SELECT 1')).resolves.not.toThrow();
+  test('should connect to database', () => {
+    // Jest will wait for promise to resolve and if promise rejects then the test will fail
+    return conn.query('SELECT 1');
   })
 
-  describe('when queries are called multiple times concurrently (requires db connection)', () => {
+  describe('when queries are called multiple times concurrently (assumes working db connection!)', () => {
     let elapsed_time: number;
     const sleep_time_in_minutes = 0.1;
     const {performance} = require('perf_hooks');
