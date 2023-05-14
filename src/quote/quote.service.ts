@@ -25,16 +25,16 @@ export class QuoteService {
     async addQuote(addQuoteInput : AddQuoteInput):Promise<Quote>{
         const query_str = `
                 WITH new_ticker AS (
-                    INSERT INTO tickers (ticker) VALUES ($1)
+                    INSERT INTO tickers (ticker) VALUES ($1) 
+                        ON CONFLICT (ticker) DO UPDATE SET ticker = excluded.ticker
                     RETURNING id, ticker
                 )
                 INSERT INTO quotes(ticker_id, timestamp, price) VALUES ((SELECT id FROM new_ticker), $2, $3) 
                 RETURNING id, timestamp, price, (SELECT ticker FROM new_ticker);
         `
-        const query_values = [addQuoteInput.ticker.toString(), addQuoteInput.timestamp.toISOString(), addQuoteInput.price.toString()];
+        // Note: INSERT ON CONFLICT UPDATE is guaranteed to work as expected even under high concurrent load
 
-        // TO DO: stop adding a duplicate ticker if one already exists
-        // TO DO: solve race condition on adding a new ticker
+        const query_values = [addQuoteInput.ticker.toString(), addQuoteInput.timestamp.toISOString(), addQuoteInput.price.toString()];
 
         try{
             const newQuote = await this.conn.query(query_str, query_values);
