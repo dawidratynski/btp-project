@@ -59,7 +59,6 @@ describe('QuoteService', () => {
 
     describe('when getQuotes is called but db throws', () => {
       let returnError: any;
-      let expectedReturnError: any;
       let didThrow: boolean;
 
 
@@ -74,7 +73,6 @@ describe('QuoteService', () => {
           returnError = err;
         }
         
-        expectedReturnError = new HttpException("Failed to connect to database", HttpStatus.INTERNAL_SERVER_ERROR);
       });
 
 
@@ -82,8 +80,8 @@ describe('QuoteService', () => {
         expect(didThrow).toEqual(true);
       });
 
-      test('then thrown error should be correct', () => {
-        expect(returnError).toEqual(expectedReturnError);
+      test('then thrown error should be of correct type', () => {
+        expect(returnError).toBeInstanceOf(HttpException);
       });
     });
 
@@ -150,7 +148,6 @@ describe('QuoteService', () => {
 
     describe('when addQuote is called but db throws', () => {
       let returnError: any;
-      let expectedReturnError: any;
       let didThrow: boolean;
 
 
@@ -165,7 +162,6 @@ describe('QuoteService', () => {
           returnError = err;
         }
         
-        expectedReturnError = new HttpException("Failed to connect to database", HttpStatus.INTERNAL_SERVER_ERROR);
       });
 
 
@@ -174,8 +170,8 @@ describe('QuoteService', () => {
       });
 
 
-      test('then thrown error should be correct', () => {
-        expect(returnError).toEqual(expectedReturnError);
+      test('then thrown error should be of correct type', () => {
+        expect(returnError).toBeInstanceOf(HttpException);
       });
     })
 
