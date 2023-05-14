@@ -16,8 +16,8 @@ export class QuoteService {
         try {
             const res = await this.conn.query(query_str);
             return res.rows as Quote[];
-        } catch {
-            throw new HttpException("Failed to connect to database", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (err) {
+            throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -31,8 +31,8 @@ export class QuoteService {
         try{
             const newQuote = await this.conn.query(query_str);
             return (newQuote.rows as Quote[])[0];
-        } catch {
-            throw new HttpException("Failed to connect to database", HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (err) {
+            throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
