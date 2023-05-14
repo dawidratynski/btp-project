@@ -12,7 +12,7 @@ export class QuoteService {
 
 
     async getQuotes():Promise<Quote[]> {
-        const query_str = `SELECT * FROM quotes`;
+        const query_str = `SELECT quotes.id, ticker, timestamp, price FROM quotes INNER JOIN tickers ON quotes.ticker_id = tickers.id;`;
         try {
             const res = await this.conn.query(query_str);
             return res.rows as Quote[];
