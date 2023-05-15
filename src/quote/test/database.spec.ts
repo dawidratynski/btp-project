@@ -2,8 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { DbModule } from '../../db/db.module';
 import { QuoteService } from '../quote.service';
 import { Quote } from '../quote.entity';
-import { quoteStub } from './stubs/quote.stub';
-import { HttpException } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { addQuoteInputStub } from './stubs/add-quote.input.stub';
 import { AddQuoteInput } from '../dto/add-quote.input';
@@ -91,7 +89,10 @@ describe('Postgresql queries from QuoteService (Assumes a working db connection!
     });
 
     describe('when addQuote is called multiple times concurrently on the same new ticker', () => {
-      const test_ticker_name = 'test_ticker_' + Math.random().toString(36).slice(2, 22); // this will generate pseudo-random 20 character alphanumeric string representing a ticker
+
+     // this will generate pseudo-random 20 character alphanumeric string representing a ticker
+      const test_ticker_name = 'test_ticker_' + Math.random().toString(36).slice(2, 22);
+
       let elapsed_time: number;
       let single_request_elapsed_time: number;
       const {performance} = require('perf_hooks');
@@ -110,7 +111,7 @@ describe('Postgresql queries from QuoteService (Assumes a working db connection!
 
         start_time = performance.now();
 
-        // Note: tickers are marked in db as unique, so trying to add duplicates of the same ticker would raise error
+        // Note: tickers are marked in db as unique, so trying to add duplicates of the same ticker would raise an error
 
         const query1 = service.addQuote(inputQuote);
         const query2 = service.addQuote(inputQuote);
